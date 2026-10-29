@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>/*TITLE*/</title>
+<style>
+/*STYLE*/
+</style>
+</head>
+<body>
+<main>
+<nav class="sc-nav" aria-label="Scenarios">
+  <a href="../index.html">← All scenarios</a>
+  <span id="pn"></span>
+</nav>
+<article class="card" id="card"></article>
+</main>
+<div id="tip"></div>
+<script>
+const P = /*DATA*/null;
+/*COMMON*/
+renderCard($('card'), P.C, P.G, { titleTag: 'h1' });
+[['prev', '‹ '], ['next', '']].forEach(([k, pre], i) => {
+  const s = P[k];
+  if (!s) return;
+  if (i && P.prev) $('pn').appendChild(document.createTextNode(' · '));
+  const a = document.createElement('a'); a.href = `${s}.html`;
+  a.textContent = i ? `${sid(s)} ${nm(s)} ›` : `${pre}${sid(s)} ${nm(s)}`;
+  $('pn').appendChild(a);
+});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => renderCard($('card'), P.C, P.G, { titleTag: 'h1' }));
+</script>
+</body>
+</html>
